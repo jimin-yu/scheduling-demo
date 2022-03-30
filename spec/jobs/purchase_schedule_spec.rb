@@ -5,8 +5,10 @@ RSpec.describe ScheduleJob, :type => :job do
         before(:each) do
             ActiveJob::Base.queue_adapter = :test
         end
-        
-        it "default schedule" 
+
+        it "default schedule" do
+            byebug
+        end
 
         it "disabeld schedule"
 

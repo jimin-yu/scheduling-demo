@@ -11,5 +11,8 @@
 #
 FactoryBot.define do
     factory :purchase_schedule do
+        date {Date.today}
+        time {"#{rand(13..23)}:00"}
+        enabled {true}
     end
 end
