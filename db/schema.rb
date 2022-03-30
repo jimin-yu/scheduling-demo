@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2022_03_30_054759) do
 
   create_table "purchase_schedules", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
-    t.date "date"
+    t.date "date", null: false
     t.string "time"
     t.boolean "enable"
     t.datetime "created_at", precision: 6, null: false
