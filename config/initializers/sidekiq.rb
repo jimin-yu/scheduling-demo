@@ -1,5 +1,3 @@
-# bundle exec sidekiq command => this file executed
-
 redis_params = {
     url: "redis://localhost:6379",  
 }

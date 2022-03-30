@@ -4,12 +4,12 @@ class ScheduleJob < ActiveJob::Base
   
     def perform(*args)
         today_schedule = PurchaseSchedule.find_by(date: Date.today)
-        
+    
         if today_schedule.blank?
             PurchaseJob.set(wait_until: Time.parse('10pm')).perform_later()
-        elsif today_schedule.enable
+        elsif today_schedule.enabled
             PurchaseJob.set(wait_until: Time.parse(today_schedule.time)).perform_later()
         end
-        
     end
+    
 end
