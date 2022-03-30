@@ -9,10 +9,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-require "test_helper"
-
-class PurchaseScheduleTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+FactoryBot.define do
+    factory :purchase_schedule do
+    end
 end

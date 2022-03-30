@@ -12,10 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2022_03_30_054759) do
 
-  create_table "purchase_schedules", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
-    t.date "date", null: false
-    t.string "time"
-    t.boolean "enabled"
+  create_table "purchase_schedules", charset: "utf8mb4", collation: "utf8mb4_general_ci", comment: "사입 요청 api 스케줄링 테이블", force: :cascade do |t|
+    t.date "date", null: false, comment: "스케줄 날짜"
+    t.string "time", comment: "스케줄 시간"
+    t.boolean "enabled", comment: "api 전송 여부"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["date"], name: "index_purchase_schedules_on_date"
