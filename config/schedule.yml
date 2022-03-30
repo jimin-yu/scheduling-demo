@@ -1,0 +1,7 @@
+example_job:
+  cron: "* * * * *" 
+  class: "ExampleJob"
+  queue: default
+  args:
+    hard: "stuff"
+

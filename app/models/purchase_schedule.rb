@@ -1,0 +1,2 @@
+class PurchaseSchedule < ApplicationRecord
+end
