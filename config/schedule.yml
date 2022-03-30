@@ -1,7 +1,7 @@
 example_job:
-  cron: "* * * * *" 
-  class: "ExampleJob"
-  queue: default
+  cron: "0 0 * * 1-5"   # At 00:00 on every day-of-week from Monday through Friday
+  class: "ScheduleJob"
+  queue: schedule
   args:
     hard: "stuff"
 

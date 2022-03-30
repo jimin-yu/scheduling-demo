@@ -1,6 +1,6 @@
 # 매일 schedule 테이블 조건을 확인해서 레디스큐에 purchase job을 엔큐하는 CronJob
 class ScheduleJob < ActiveJob::Base
-    queue_as :default
+    queue_as :schedule
   
     def perform(*args)
         today_schedule = PurchaseSchedule.find_by(date: Date.today)

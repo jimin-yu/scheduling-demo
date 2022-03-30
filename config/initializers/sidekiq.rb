@@ -14,7 +14,7 @@ Sidekiq.configure_client do |config|
     config.redis = redis_params
 end
 
-# scheduling
+# load cron job
 schedule_file = "config/schedule.yml"
 
 if File.exist?(schedule_file) && Sidekiq.server?
