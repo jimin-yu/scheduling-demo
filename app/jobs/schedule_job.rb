@@ -3,6 +3,7 @@ class ScheduleJob < ActiveJob::Base
     queue_as :schedule
   
     def perform(*args)
+        Rails.logger.info "zone: #{Time.zone}"
         today_schedule = PurchaseSchedule.find_by(date: Date.today)
     
         if today_schedule.blank?
