@@ -3,8 +3,13 @@ class ScheduleJob < ActiveJob::Base
     queue_as :default
   
     def perform(*args)
-        today_schedule = PurchaseSchedule.where(date: Date.today)
-
-        PurchaseJob.set(wait_until: Time.now+30).perform_later()
+        today_schedule = PurchaseSchedule.find_by(date: Date.today)
+        
+        if today_schedule.blank?
+            PurchaseJob.set(wait_until: Time.parse('10pm')).perform_later()
+        elsif today_schedule.enable
+            PurchaseJob.set(wait_until: Time.parse(today_schedule.time)).perform_later()
+        end
+        
     end
 end
