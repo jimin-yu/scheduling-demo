@@ -8,6 +8,10 @@ class ScheduleController < ApplicationController
         @schedule.update!(schedule_params)
     end
 
+    def events
+        render json: {message: 'hello'}
+    end
+
     private
 
     def set_schedule
