@@ -1,1 +1,22 @@
-calendar
+<h1>calendar</h1>
+<div id='calendar'></div>
+
+<% content_for :stylesheet do %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css">
+<% end %>
+
+<% content_for :javascript do %>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
+    <script>
+        console.log("hello")
+
+        document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+        });
+        calendar.render();
+        });
+
+    </script>
+<% end %>
