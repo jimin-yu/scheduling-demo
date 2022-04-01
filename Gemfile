@@ -64,3 +64,4 @@ gem 'annotate'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 
+gem 'bootstrap', '~> 4.3.1'

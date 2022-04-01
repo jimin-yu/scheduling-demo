@@ -2,7 +2,7 @@
 # custom -> default 날짜에 disable / 혹은 시간 변경
 
 class ScheduleController < ApplicationController
-    before_action :set_schedule
+    before_action :set_schedule, except: [:events]
 
     def update
         @schedule.update!(schedule_params)

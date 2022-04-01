@@ -1,12 +1,12 @@
 <h1>calendar</h1>
 <div id='calendar'></div>
+<%= render "modal" %>
 
 <% content_for :stylesheet do %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css">
     <style>
         .fc-daygrid-dot-event {
-            color: red;
-            padding: 10px 0;
+            padding: 10px 10px;
         }
     </style>
 <% end %>
@@ -42,18 +42,49 @@
                     // console.log(info.event.start)
                     // console.log(info.event.allDay)
                     // change the border color just for fun
+                    get_event_info(info)
+                    $('#eventModifyModal').modal('show');
                     info.el.style.borderColor = 'red';
                 }
             });
             calendar.render();
+
+            $('#submitButton').click(function(){
+                date = $('#date').text();
+                params = {
+                    purchase_schedule:{
+                        time: $('#time').val(),
+                        enabled: $('#enabled').prop('checked')
+                    }
+                }
+                $.ajax({
+                    type: "PUT",
+                    url: `/schedule/${date}`, 
+                    data: params,
+                    success: function(result){
+                        location.reload();
+                    }
+                })
+            })
         });
 
-        // function params(info){
-        //     $.param({
-        //         start: info.start.valueOf(),
-        //         end: info.end.valueOf()
-        //     })
-        // }
+        function get_event_info(info){
+            date = strftime(info.event.start);
+            $('#date').text(date);
+            $.ajax({
+                type: "GET",
+                url: `/schedule/${date}`, 
+                success: function(result){
+                    $("#enabled").prop("checked", result.data.enabled);
+                    $("#time").val(result.data.time);
+                }
+            })
+        }
+
+        function strftime(time){
+            //yyyy-mm-dd format
+            return time.toISOString().split('T')[0];
+        }
 
     </script>
 <% end %>
