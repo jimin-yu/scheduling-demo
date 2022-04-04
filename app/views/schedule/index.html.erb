@@ -28,7 +28,7 @@
                 customButtons: {
                     addEventButton: {
                         text: '스케줄 추가',
-                        click: add_event
+                        click: () => $('#addEventModal').modal('show')
                     }
                 },
                 events: async function(info, successCallback, failureCallback) {
@@ -80,14 +80,7 @@
             })
         }
 
-        function edit_event(){
-            let date = $('#editEventModal #date').text();
-            let params = {  
-                purchase_schedule:{
-                    time: $('#editEventModal #time').val(),
-                    enabled: $('#editEventModal #enabled').prop('checked')
-                }
-            };
+        function create_or_edit_event(date, params){
             $.ajax({
                 type: "PUT",
                 url: `/schedule/${date}`, 
@@ -98,14 +91,10 @@
             })
         }
 
-        function add_event(){
-            $('#addEventModal').modal('show');
-        }
-
         function strftime(time){
             //yyyy-mm-dd format
             return time.toISOString().split('T')[0];
         }
 
     </script>
-<% end %>
+<% end %>å

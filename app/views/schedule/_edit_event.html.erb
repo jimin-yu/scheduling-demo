@@ -12,10 +12,24 @@
             </div>
             <div class="modal-header">
                 <br>
-                <button type="button" id="submitButton" onclick="edit_event()">적용하기</button>
+                <button type="button" onclick="edit_event()">적용하기</button>
                 <br><br>
             </div>
       </div>
   </div>
 </div>
 
+<% content_for :javascript do %>
+<script>
+    function edit_event(){
+        let date = $('#editEventModal #date').text();
+        let params = {  
+            purchase_schedule:{
+                time: $('#editEventModal #time').val(),
+                enabled: $('#editEventModal #enabled').prop('checked')
+            }
+        };
+        create_or_edit_event(date, params);
+    }
+</script>
+<% end %>

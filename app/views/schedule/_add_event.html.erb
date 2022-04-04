@@ -5,19 +5,34 @@
                 <h4 class="mb-3">스케줄 추가 <span id="date"></span></h4>
             </div>
             <div class="modal-body">
-                <%# <label for="date">날짜 : </label>
+                <label for="date">날짜 : </label>
                 <input type="date" id="date" name="date"><br><br>
                 <label for="time">시각 : </label>
                 <input type="time" id="time" name="time"><br><br>
                 <label for="enabeld">사입 요청 여부 : </label>
-                <input type="checkbox" id="enabled" name="enabled"><br><br> %>
+                <input type="checkbox" id="enabled" name="enabled"><br><br>
             </div>
             <div class="modal-header">
                 <br>
-                <button type="button" id="submitButton">추가하기</button>
+                <button type="button" onclick="create_event()">추가하기</button>
                 <br><br>
             </div>
       </div>
   </div>
 </div>
 
+<% content_for :javascript do %>
+<script>
+    function create_event(){
+        let date = document.querySelector('#addEventModal input[type="date"]').value;
+        let params = {  
+            purchase_schedule:{
+                time: $('#addEventModal #time').val(),
+                enabled: $('#addEventModal #enabled').prop('checked'),
+                
+            }
+        };
+        create_or_edit_event(date, params);
+    }
+</script>
+<% end %>
