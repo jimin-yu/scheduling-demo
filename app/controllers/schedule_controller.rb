@@ -1,6 +1,3 @@
-# default 날짜에는 기본적으로 사입 요청 한다고 생각
-# custom -> default 날짜에 disable / 혹은 시간 변경
-
 class ScheduleController < ApplicationController
     before_action :set_schedule, only: [:show, :update]
 
@@ -24,6 +21,7 @@ class ScheduleController < ApplicationController
     end
 
     def parse_time
+        byebug
         [:start_date, :end_date].reduce({}) {|hash, key| hash.merge( key => Time.at(params[key][0..9].to_i))}
     end
 

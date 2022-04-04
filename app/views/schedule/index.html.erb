@@ -1,4 +1,4 @@
-<h1>calendar</h1>
+<h1>😗 schedule</h1>
 <div id='calendar'></div>
 <%= render "edit_event" %>
 <%= render "add_event" %>
@@ -6,6 +6,15 @@
 <% content_for :stylesheet do %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css">
     <style>
+        h1{
+            text-align: center;
+        }
+        #calendar {
+            height: 85vh;
+            width: 90vw;
+            margin-left: auto;
+            margin-right: auto;
+        }
         .fc-daygrid-dot-event {
             padding: 10px 10px;
         }
