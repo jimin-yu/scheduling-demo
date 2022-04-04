@@ -28,3 +28,28 @@ rails db:seed
 
 cluster test
 ------------
+1) create new local cluster
+```
+minikube start --driver=virtualbox
+```
+
+2) build and push docker image
+```
+docker build -t jjmmyyou111/schedule-app .
+docker push jjmmyyou111/schedule-app:latest
+``` 
+
+3) deploy resources
+```
+kubectl apply -f ./cluster/redis.yaml
+kubectl apply -f ./cluster/mysql.yaml
+kubectl apply -f ./cluster/schedule-app.yaml
+
+kubectl get service -o wide
+minikube service schedule-app-service
+```
+
+로그 보기
+```
+kubectl logs -f {pod} -c schedule-app
+```

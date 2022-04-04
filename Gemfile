@@ -5,8 +5,9 @@ ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.5'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# Use mysql as the database for Active Record
+gem 'mysql2', '~> 0.5.2'
+
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -55,9 +56,8 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'mysql2'
 
 gem 'annotate'
 
@@ -65,3 +65,4 @@ gem 'sidekiq'
 gem 'sidekiq-cron'
 
 gem 'dotenv-rails'
+gem 'foreman'

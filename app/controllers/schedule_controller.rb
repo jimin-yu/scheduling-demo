@@ -21,7 +21,6 @@ class ScheduleController < ApplicationController
     end
 
     def parse_time
-        byebug
         [:start_date, :end_date].reduce({}) {|hash, key| hash.merge( key => Time.at(params[key][0..9].to_i))}
     end
 

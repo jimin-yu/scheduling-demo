@@ -1,5 +1,5 @@
 redis_params = {
-    url: "redis://localhost:6379",  
+    url: ENV.fetch('REDIS_HOST', "redis://localhost:6379"),  
 }
 
 # Server config
