@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: schedule-app-deployment
   labels:
     app: schedule-app
+  name: schedule-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: schedule-app
@@ -15,10 +15,10 @@ spec:
         app: schedule-app
     spec:
       containers:
-      - name: schedule-app
-        image: jjmmyyou111/schedule-app:latest  
+      - image: gcr.io/google-samples/node-hello:1.0
+        name: schedule-app
         ports:
-        - containerPort: 3000   
+        - containerPort: 8080
         env:
         - name: REDIS_HOST
           value: 'redis://redis:6379'
@@ -32,15 +32,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: schedule-app-service
+  name: schedule-service
   labels:
     app: schedule-app
 spec:
+  ports:
+  - nodePort: 32391
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
   selector:
     app: schedule-app
   type: LoadBalancer
-  ports:
-    - protocol: TCP
-      port: 3000
-      targetPort: 3000
-

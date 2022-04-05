@@ -31,7 +31,7 @@ cluster test
 로컬 클러스터에 실제로 스케줄링 앱을 배포 해서, pod가 여러개 띄워져 있을 때 CronJob 이 중복 되지는 않는지, pod를 죽였을 때 어떻게 동작하는지와 같은 것들을 테스트 해봅시다.
 1) create new local cluster
 ```
-minikube start
+minikube start --driver=virtualbox
 ```
 
 2) build and push docker image
@@ -52,10 +52,21 @@ kubectl apply -f ./cluster/schedule-app.yaml
 kubectl logs -f <pod> -c schedule-app
 ```
 
-4) External-IP 연결해서 app에 접속하기
+4) db setting
+```
+kubectl get pods
+kubectl exec -it po/<schedule-app pod> -c schedule-app -- sh
+
+rails db:create
+rails db:migrate
+rails db:seed
+```
+
+5) External-IP 연결해서 app에 접속하기
 
 ```
-kubectl apply -f ./cluster/redis.yaml
+minikube dashboard
+minikube tunnel
 ```
 
 (참고)  
@@ -71,3 +82,9 @@ kubectl apply -f ./cluster/redis.yaml
   ```
   minikube tunnel
   ```
+
+
+```
+apk add --update curl
+curl -X GET -H "Content-Type: application/json" localhost:3000/schedule/2022-04-05
+```
