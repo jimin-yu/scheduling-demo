@@ -6,6 +6,8 @@ metadata:
   name: schedule-app
 spec:
   replicas: 3
+  strategy: 
+    type: Recreate
   selector:
     matchLabels:
       app: schedule-app
@@ -28,6 +30,8 @@ spec:
           value: root
         - name: DB_PASSWORD
           value: '1111'
+        - name: foo
+          value: bar
 ---
 apiVersion: v1
 kind: Service
