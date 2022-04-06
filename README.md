@@ -31,7 +31,7 @@ cluster test
 로컬 클러스터에 실제로 스케줄링 앱을 배포 해서, pod가 여러개 띄워져 있을 때 CronJob 이 중복 되지는 않는지, pod를 죽였을 때 어떻게 동작하는지와 같은 것들을 테스트 해봅시다.
 1) create new local cluster
 ```
-minikube start --driver=virtualbox
+minikube start
 ```
 
 2) build and push docker image
@@ -44,12 +44,7 @@ docker push jjmmyyou111/schedule-app:latest
 ```
 kubectl apply -f ./cluster/redis.yaml
 kubectl apply -f ./cluster/mysql.yaml
-kubectl apply -f ./cluster/schedule-app.yaml
-```
-
-로그 보기
-```
-kubectl logs -f <pod> -c schedule-app
+kubectl apply -f ./cluster/app.yaml
 ```
 
 4) db setting
@@ -61,15 +56,35 @@ rails db:create
 rails db:migrate
 rails db:seed
 ```
+5) 포트 포워딩으로 app에 접속하기  
+  
+[kubernetes port-forward doc](https://kubernetes.io/ko/docs/tasks/access-application-cluster/port-forward-access-application-cluster/)  
 
-5) External-IP 연결해서 app에 접속하기
+```
+kubectl port-forward service/schedule-service 3000:3000
+```
+6) visit `localhost:3000` !
+
+<br>
+
+디버깅
+
+```
+kubectl logs -f <pod> -c schedule-app
+
+apk add --update curl
+curl -X GET -H "Content-Type: application/json" localhost:3000/schedule/2022-04-05
+```
+
+-------------------------
+(참고) app에 접속하는 다른 방법  
+-> 안됨.. 🤬
 
 ```
 minikube dashboard
 minikube tunnel
 ```
-
-(참고)  
+  
 [minikube - Accessing apps](https://minikube.sigs.k8s.io/docs/handbook/accessing/)  
 - NodePort  
   opens a specific port, and any traffic that is sent to this port is forwarded to the service.
@@ -84,7 +99,7 @@ minikube tunnel
   ```
 
 
-```
-apk add --update curl
-curl -X GET -H "Content-Type: application/json" localhost:3000/schedule/2022-04-05
-```
+
+
+ingress  
+[minikube-ingerss](https://kubernetes.io/ko/docs/tasks/access-application-cluster/ingress-minikube/)  
