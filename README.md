@@ -21,7 +21,13 @@ rails db:migrate
 rails db:seed
 ```
 
-4) `rails s`
+4) start server
+```
+rails s
+
+redis-server
+bundle exec sidekiq
+```
 
 5) visit `http://localhost:3000/schedule`
 

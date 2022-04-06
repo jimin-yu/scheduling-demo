@@ -11,7 +11,7 @@ class ScheduleJob < ActiveJob::Base
         # elsif today_schedule.enabled
         #     PurchaseJob.set(wait_until: Time.parse(today_schedule.time)).perform_later()
         # end
-        PurchaseJob.set(wait :30.second).perform_later()
+        PurchaseJob.set(wait: 30.second).perform_later()
         JobExecTest.create(job_name: self.class.name)
     end
     
