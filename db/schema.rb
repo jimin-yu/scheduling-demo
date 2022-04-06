@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_30_054759) do
+ActiveRecord::Schema.define(version: 2022_04_06_025854) do
+
+  create_table "job_exec_tests", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "job_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "purchase_schedules", charset: "utf8mb4", collation: "utf8mb4_general_ci", comment: "사입 요청 api 스케줄링 테이블", force: :cascade do |t|
     t.date "date", null: false, comment: "스케줄 날짜"

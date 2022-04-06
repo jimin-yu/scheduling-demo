@@ -1,0 +1,9 @@
+<h1>Job Execution Log</h1>
+
+<ul>
+  <% @logs.each do |log| %> 
+    <li>
+      <div><%= "#{log.job_name} : #{log.created_at}" %></div>
+    </li>
+  <% end %>
+</ul>

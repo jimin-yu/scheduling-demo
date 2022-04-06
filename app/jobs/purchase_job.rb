@@ -4,5 +4,6 @@ class PurchaseJob < ActiveJob::Base
   
     def perform(*args)
         Rails.logger.info "[#{Time.current}] SEND API TO WMS"
+        JobExecTest.create(job_name: self.class.name)
     end
 end

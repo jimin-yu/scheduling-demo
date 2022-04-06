@@ -4,13 +4,15 @@ class ScheduleJob < ActiveJob::Base
   
     def perform(*args)
         Rails.logger.info "zone: #{Time.zone}"
-        today_schedule = PurchaseSchedule.find_by(date: Date.today)
+        # today_schedule = PurchaseSchedule.find_by(date: Date.today)
     
-        if today_schedule.blank?
-            PurchaseJob.set(wait_until: Time.parse('10pm')).perform_later()
-        elsif today_schedule.enabled
-            PurchaseJob.set(wait_until: Time.parse(today_schedule.time)).perform_later()
-        end
+        # if today_schedule.blank?
+        #     PurchaseJob.set(wait_until: Time.parse('10pm')).perform_later()
+        # elsif today_schedule.enabled
+        #     PurchaseJob.set(wait_until: Time.parse(today_schedule.time)).perform_later()
+        # end
+        PurchaseJob.set(wait :30.second).perform_later()
+        JobExecTest.create(job_name: self.class.name)
     end
     
 end
