@@ -1,5 +1,6 @@
 Scheduling Demo
 ===============
+![scheduling](public/scheduling.jpg)
 ![demo page](./public/demo-page.png)
 start local server
 ------------------
