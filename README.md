@@ -182,7 +182,14 @@ A rufus-scheduler instance will go on scheduling while it is present among the o
 간단하지만 whenever 과 마찬가지로 중복 문제가 있고 ( 각 rails 프로세스의 rufus 스케줄링 스레드마다 cronJob 실행 ),   
 sidekiq-cron이나 sidekiq-scheduler 처럼 ui로 편하게 모니터링 할 수 있는 기눙도 없다.
 ### sidekiq-scheduler
+채택한 sidekiq-cron 과 비슷.  
+두가지를 비교하는 잘 정리 된 글이 있는데 [ruby schedulers](https://medium.com/serpapi/ruby-schedulers-whenever-vs-sidekiq-cron-vs-sidekiq-scheduler-b229d7ca5256)  
+1) polling interval  
+   sidekiq-cron : 30s (default. 바꿀 수 있음)  
+   sidekiq-scheduler : 
+2) dashboard
 
+정도가 차이점인 것 같다.
 
 ### kubernetes cronJob
 

@@ -62,7 +62,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'annotate'
 
 gem 'sidekiq'
-gem 'sidekiq-cron'
+gem "sidekiq-cron", "~> 1.3"
 
 gem 'dotenv-rails'
 gem 'foreman'
