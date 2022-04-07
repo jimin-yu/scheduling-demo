@@ -66,3 +66,6 @@ gem 'sidekiq-cron'
 
 gem 'dotenv-rails'
 gem 'foreman'
+
+# scheduling
+gem 'whenever'

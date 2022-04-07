@@ -121,3 +121,53 @@ ingress
 2) schedule-app deployment에 환경 변수 추가해서 전체 pod를 terminating 하고 recreate 했을 때. 어떻게 동작하는지
 ![job-execution-log2](public/job-execution-log2.png)
 15:05 경에 PurchaseJob이 실행안되긴 했는데, 다른 조작 없이 pod Running 시 CronJob이 알아서 재가동 했다. 실제 사입 스케줄링 CronJob은 하루 주기일 테니까 상관 없을 것 같다.
+
+
+다른 스케줄링 방법과 비교
+-------------------
+#### whenever
+시작하기
+```
+gem 'whenever'
+```
+```
+bundle exec wheneverize .
+#=> config/schedule.rb 파일 생성됨
+```
+
+스케줄링
+```
+# config/scheduler.rb
+
+set :output, "log/cron.log"
+
+every 1.minute do 
+    command "echo 'hello~'"
+end
+```
+```
+whenever --update-crontab
+whenever --clear-crontab
+crontab -l
+```
+
+job_type
+```
+# default
+runner : Rails Console 명령어
+rake : lib/tasks 파일 실행 명령어
+command : bash 명령어
+```
+
+루비 문법을 `리눅스 crontab`으로 변환해주는 편리함이 있다. 
+
+#### rufus-scheduler
+
+
+#### sidekiq-scheduler
+
+
+#### kubernetes cronJob
+
+
+#### lambda
