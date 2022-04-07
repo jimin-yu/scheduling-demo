@@ -125,7 +125,7 @@ ingress
 
 다른 스케줄링 방법과 비교
 -------------------
-#### whenever
+### whenever
 시작하기
 ```
 gem 'whenever'
@@ -159,15 +159,16 @@ rake : lib/tasks 파일 실행 명령어
 command : bash 명령어
 ```
 
-루비 문법을 `리눅스 crontab`으로 변환해주는 편리함이 있다. 
+루비 문법을 `리눅스 crontab`으로 변환해주는 편리함이 있다.   
+그렇지만 각 dealibird container마다 crontab 프로세스를 각자 중복 실행할 우려.
 
-#### rufus-scheduler
-
-
-#### sidekiq-scheduler
+### rufus-scheduler
 
 
-#### kubernetes cronJob
+### sidekiq-scheduler
 
 
-#### lambda
+### kubernetes cronJob
+
+
+### lambda
