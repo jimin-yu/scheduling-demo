@@ -127,16 +127,16 @@ ingress
 -------------------
 ### whenever
 시작하기
-```
+```ruby
 gem 'whenever'
 ```
-```
+```ruby
 bundle exec wheneverize .
 #=> config/schedule.rb 파일 생성됨
 ```
 
 스케줄링
-```
+```ruby
 # config/scheduler.rb
 
 set :output, "log/cron.log"
@@ -164,7 +164,7 @@ command : bash 명령어
 사용성도 ActiveJob을 활용하는 방식보다 불편한 것 같다.
 
 ### rufus-scheduler
-```
+```ruby
 # config/initializers/scheduler.rb
 
 require 'rufus-scheduler'
