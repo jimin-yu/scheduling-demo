@@ -69,3 +69,4 @@ gem 'foreman'
 
 # scheduling
 gem 'whenever'
+gem 'rufus-scheduler'

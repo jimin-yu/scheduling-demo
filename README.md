@@ -160,11 +160,27 @@ command : bash 명령어
 ```
 
 루비 문법을 `리눅스 crontab`으로 변환해주는 편리함이 있다.   
-그렇지만 각 dealibird container마다 crontab 프로세스를 각자 중복 실행할 우려.
+그렇지만 각 dealibird container마다 crontab 프로세스를 각자 중복 실행할 우려.  
+사용성도 ActiveJob을 활용하는 방식보다 불편한 것 같다.
 
 ### rufus-scheduler
+```
+# config/initializers/scheduler.rb
 
+require 'rufus-scheduler'
 
+s = Rufus::Scheduler.singleton
+
+s.every '1s' do
+  Rails.logger.info "hello, it's #{Time.now}"
+end
+```
+루비 프로세스 내에서 스케줄링 스레드를 띄우는 방식.
+>It does not persist your schedules. When the process is gone and the scheduler instance with it, the schedules are gone.  
+A rufus-scheduler instance will go on scheduling while it is present among the objects in a Ruby process.
+
+간단하지만 whenever 과 마찬가지로 중복 문제가 있고 ( 각 rails 프로세스의 rufus 스케줄링 스레드마다 cronJob 실행 ),   
+sidekiq-cron이나 sidekiq-scheduler 처럼 ui로 편하게 모니터링 할 수 있는 기눙도 없다.
 ### sidekiq-scheduler
 
 
